@@ -4,10 +4,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { Header } from '../components/Header'
+import { InputAddNewRepository } from '../components/InputAddNewRepository'
 import { InputFind } from '../components/InputFind'
 import { Repositories } from '../components/Repositories'
 import client from '../graphql/client'
-import { GET_ALL_REPOSITORIES } from '../graphql/queris'
+import { GET_ALL_REPOSITORIES } from '../graphql/queries'
 
 export type RepositoryDataProps = {
   id: string;
@@ -55,6 +56,7 @@ function Home({ repositories }: RepositoriesProps) {
           <Repositories repositories={repositories} />
           : <Repositories repositories={filteredRepositories} />
         }
+        <InputAddNewRepository />
       </Box>
     </>
   )
