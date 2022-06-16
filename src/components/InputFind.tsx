@@ -16,18 +16,14 @@ export const InputFind = ({ getInputValue }: InputFindProps) => {
         }, 1000)
     }
     return (
-        <InputGroup maxW={"80%"} size='md'>
-            <Input
-                pr='4.5rem'
-                type={'text'}
-                placeholder='Enter password'
-                onChange={(e) => newFindName(e.target.value)}
-            />
-            <InputRightElement width='4.5rem'>
-                <Button h='1.75rem' size='sm' onClick={(e) => console.log(e.target)}>
-                    buscar
-                </Button>
-            </InputRightElement>
-        </InputGroup>
+        <Input
+            maxW={"80%"} 
+            size='md'
+            pr='4.5rem'
+            type={'text'}
+            placeholder='Pesquise um repositório por nome'
+            onChange={(e) => newFindName(e.target.value)}
+        />
+
     )
 }
