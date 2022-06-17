@@ -1,36 +1,65 @@
-import { Button, Input, InputGroup, InputRightElement } from "@chakra-ui/react"
+import {
+    Button,
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    Heading,
+    Input,
+    VStack
+} from "@chakra-ui/react"
 import axios from "axios"
-import { useEffect, useState } from "react"
-import client from "../graphql/client"
-import { ADD_NEW_REPOSITORY } from "../graphql/queries"
+import { useFormik } from "formik"
+import * as Yup from 'yup'
 
 export const InputAddNewRepository = () => {
-    const [inputValue, setInputValue] = useState('')
-    const [newRepository, setNewRepository] = useState('')
-    const [response, setResponse] = useState({})
-
-    const addNewRepository = async (url: string) => {
-        await axios.post('/api/createRepository', {
-            url,
-            title: "newReposirory"
-        })
-            .then(function (response) {
-                console.log('frontend resposne', response);
-            })
-            .catch(function (error) {
-                console.error('frontend error', error);
-            });
-    }
-
+    const formik = useFormik({
+        initialValues: {
+            title: "",
+            url: "",
+        },
+        validationSchema: Yup.object({
+            title: Yup.string().required("Um nome é nescessário"),
+            url: Yup.string().required("Uma URl é nescessária").url('Isso não é uma URL')
+        }),
+        onSubmit: (values, actions) => {
+            axios.post('/api/createRepository', values)
+            actions.resetForm()
+        }
+    })
     return (
-        <InputGroup maxW={"80%"} size='md'>
-            <Input onChange={(e) => setInputValue(e.target.value)} />
-            <InputRightElement width='4.5rem'>
-                <Button h='1.75rem' size='sm' onClick={() => addNewRepository(inputValue)}>
-                    Adicionar
-                </Button>
-            </InputRightElement>
-        </InputGroup>
+        <VStack
+            as="form"
+            mx="auto"
+            w={{ base: "90%", md: 500 }}
+            h="100vh"
+            justifyContent="center"
+            onSubmit={formik.handleSubmit}
+        >
+            <Heading>Adicionar novo Repositório</Heading>
 
+            <FormControl isInvalid={formik.errors.title && formik.touched.title}>
+                <FormLabel>Nome do repositório</FormLabel>
+                <Input
+                    name='title'
+                    placeholder="Nome do repositório"
+                    {...formik.getFieldProps('title')}
+                />
+                <FormErrorMessage>{formik.errors.title}</FormErrorMessage>
+            </FormControl>
+
+            <FormControl isInvalid={formik.errors.url && formik.touched.url}>
+                <FormLabel>Link do repositório</FormLabel>
+                <Input
+                    name='url'
+                    placeholder="Link do repositório"
+                    {...formik.getFieldProps('url')}
+                />
+                <FormErrorMessage>{formik.errors.url}</FormErrorMessage>
+            </FormControl>
+
+            <Button type="submit" variant="outline" colorScheme="teal">
+                Create Acc
+            </Button>
+        </VStack>
     )
 }
