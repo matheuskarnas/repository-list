@@ -1,21 +1,19 @@
-import { Box } from "@chakra-ui/react"
-import { RepositoriesProps, RepositoryDataProps } from "../pages"
+import { Heading, VStack } from "@chakra-ui/react"
+import { RepositoriesProps } from "../pages"
 import { Repository } from "./Repository"
 
-
 export const Repositories = ({ repositories }: RepositoriesProps) => {
-    
-    return (
-        <Box>
-            <h1>Ropositórios: {repositories.length}</h1>
 
-            {repositories.map((repository ) => {
+    return (
+        <VStack justifyContent="center" mt={8}>
+            <Heading size='md'>Repositórios: {repositories.length}</Heading>
+
+            {repositories.map((repository) => {
                 console.log(typeof repository.id);
                 return (
                     <Repository key={repository.id} repository={repository} />
                 )
             })}
-
-        </Box>
+        </VStack>
     )
 }

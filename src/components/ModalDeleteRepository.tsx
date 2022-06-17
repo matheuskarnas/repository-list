@@ -17,7 +17,6 @@ type ModalDeleteRepositoryProps = {
     onClose: () => void;
     isOpen: boolean;
     repository: RepositoryDataProps
-
 }
 
 export const ModalDeleteRepository = ({ onOpen, isOpen, onClose, repository }: ModalDeleteRepositoryProps) => {
@@ -32,7 +31,7 @@ export const ModalDeleteRepository = ({ onOpen, isOpen, onClose, repository }: M
         <>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
-                <ModalContent>
+                <ModalContent bg='gray.800' color='whiteAlpha.800'>
                     <ModalHeader>Deseja realmente excluir o repositório</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
@@ -41,7 +40,6 @@ export const ModalDeleteRepository = ({ onOpen, isOpen, onClose, repository }: M
 
                         </h2>
                     </ModalBody>
-
                     <ModalFooter>
                         <Button colorScheme='blue' mr={3} onClick={() => deleteRepository(repository.id)}>
                             Excluir

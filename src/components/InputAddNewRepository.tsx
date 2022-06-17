@@ -31,11 +31,11 @@ export const InputAddNewRepository = () => {
             as="form"
             mx="auto"
             w={{ base: "90%", md: 500 }}
-            h="100vh"
+            mt={10}
             justifyContent="center"
             onSubmit={formik.handleSubmit}
         >
-            <Heading>Adicionar novo Repositório</Heading>
+            <Heading mb={5} size="md">Adicionar novo Repositório</Heading>
 
             <FormControl isInvalid={formik.errors.title && formik.touched.title}>
                 <FormLabel>Nome do repositório</FormLabel>
@@ -48,7 +48,7 @@ export const InputAddNewRepository = () => {
             </FormControl>
 
             <FormControl isInvalid={formik.errors.url && formik.touched.url}>
-                <FormLabel>Link do repositório</FormLabel>
+                <FormLabel size={'md'}>Link do repositório</FormLabel>
                 <Input
                     name='url'
                     placeholder="Link do repositório"
@@ -57,8 +57,12 @@ export const InputAddNewRepository = () => {
                 <FormErrorMessage>{formik.errors.url}</FormErrorMessage>
             </FormControl>
 
-            <Button type="submit" variant="outline" colorScheme="teal">
-                Create Acc
+            <Button
+                type="submit"
+                variant="outline"
+                colorScheme="teal"
+            >
+                Adicionar novo Repositório
             </Button>
         </VStack>
     )

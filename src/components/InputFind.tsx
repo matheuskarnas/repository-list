@@ -1,4 +1,4 @@
-import { Button, Input, InputGroup, InputRightElement } from "@chakra-ui/react"
+import { HStack, Input } from "@chakra-ui/react"
 
 type InputFindProps = {
     getInputValue: (name: string) => void,
@@ -16,14 +16,15 @@ export const InputFind = ({ getInputValue }: InputFindProps) => {
         }, 1000)
     }
     return (
-        <Input
-            maxW={"80%"} 
-            size='md'
-            pr='4.5rem'
-            type={'text'}
-            placeholder='Pesquise um repositório por nome'
-            onChange={(e) => newFindName(e.target.value)}
-        />
-
+        <HStack justifyContent='center' mt={6}>
+            <Input
+                w={700}
+                size='md'
+                px='auto'
+                type={'text'}
+                placeholder='Pesquise um repositório por nome'
+                onChange={(e) => newFindName(e.target.value)}
+            />
+        </HStack>
     )
 }

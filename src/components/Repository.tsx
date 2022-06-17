@@ -14,20 +14,30 @@ export const Repository = ({ repository }: RepositoryProps) => {
 
     return (
         <>
-            <ModalDeleteRepository repository={repository} onOpen={onOpen} isOpen={isOpen} onClose={onClose} />
-            <HStack border={'1px'} m={'0.5px 0'} >
+            <ModalDeleteRepository
+                repository={repository}
+                onOpen={onOpen}
+                isOpen={isOpen}
+                onClose={onClose}
+            />
+            <HStack
+                border={'1px'}
+                m={'0.5px 0'}
+                w={700}
+                justifyContent="space-between"
+                px="1.5"
+            >
 
-                <Box>
+                <Box >
                     <h1>{repository.title}</h1>
                     <Link href={repository.url}>
                         <a target='_blank' >{repository.url}</a>
                     </Link>
                 </Box>
-
                 <DeleteIcon
-                    h={7}
-                    w={7}
-                    ml={'auto'}
+                    h={6}
+                    w={6}
+                    color="red.500"
                     onClick={onOpen}
                 />
             </HStack>
