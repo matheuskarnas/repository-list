@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import type { GetStaticProps } from 'next'
+import type { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { Header } from '../components/Header'
@@ -37,7 +37,7 @@ function Home({ repositories }: RepositoriesProps) {
       })
       setfilteredRepositories(arrTemporary)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputFindValue])
 
 
@@ -62,7 +62,7 @@ function Home({ repositories }: RepositoriesProps) {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const { repositories } = await client.request(GET_ALL_REPOSITORIES)
 
   console.log(repositories)
