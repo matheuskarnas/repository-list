@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Box } from '@chakra-ui/react'
 import type { GetStaticProps } from 'next'
 import Head from 'next/head'
