@@ -9,6 +9,7 @@ import {
     ModalOverlay
 } from "@chakra-ui/react"
 import axios from "axios";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { RepositoryDataProps } from "../pages";
 
@@ -36,9 +37,9 @@ export const ModalDeleteRepository = ({ onOpen, isOpen, onClose, repository }: M
                     <ModalCloseButton />
                     <ModalBody>
                         <h1>Nome do repositório: {repository.title}</h1>
-                        <h2>Link:
-
-                        </h2>
+                        <Link href={repository.url}>
+                            <a target='_blank' >{repository.url}</a>
+                        </Link>
                     </ModalBody>
                     <ModalFooter>
                         <Button colorScheme='blue' mr={3} onClick={() => deleteRepository(repository.id)}>
